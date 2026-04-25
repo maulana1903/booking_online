@@ -73,7 +73,7 @@
               id="navigation"
             >
               <li class="nav-item">
-                <a href="<?= base_url('admin/')?>adminku" class="nav-link active">
+                <a href="<?= base_url('admin/')?>superadmin" class="nav-link">
                   <i class="nav-icon bi bi-speedometer"></i>
                   <p>Dashboard</p>
                 </a>
@@ -85,7 +85,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= base_url('admin/')?>jadwal_karyawan" class="nav-link">
+                <a href="<?= base_url('admin/')?>jadwal_karyawan" class="nav-link active">
                   <i class="nav-icon bi bi-clipboard-fill"></i>
                   <p>Jadwal Karyawan</p>
                 </a>
@@ -104,11 +104,11 @@
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
+              <div class="col-sm-6"><h3 class="mb-0">User</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Admin</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                  <li class="breadcrumb-item"><a href="#">Jadwal Karyawan</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Tabel Jadwal Karyawan</li>
                 </ol>
               </div>
             </div>
@@ -123,106 +123,42 @@
           <div class="container-fluid">
             <!--begin::Row-->
             <div class="row">
-              <!--begin::Col-->
-              <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 1-->
-                <div class="small-box text-bg-primary">
-                  <div class="inner">
-                    <h3><?= $total_service ?></h3>
-                    <p>Semua Permintaan Service</p>
+              <div class="col-md-12">
+                <div class="card mb-4">
+                  <a href="<?= base_url('admin/tambah_jadwal') ?>" style="padding-top: 14px;"><span class="badge rounded-pill text-bg-primary">Buat Jadwal Baru</span></a> 
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Tanggal</th>
+                          <th style="width: 10px">ID</th>
+                          <th>Nama</th>
+                          <th>Jabatan</th>
+                          <th>Jam Masuk</th>
+                          <th style="width: 150px">Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php foreach ($jadwal as $u): ?>
+                        <tr class="align-middle">
+                          <td><?= $u->tanggal ?></td>
+                          <td><?= $u->id_jadwal ?></td>
+                          <td><?= $u->nama ?></td>
+                          <td><?= $u->jabatan ?></td>
+                          <td><?= $u->jam ?></td>
+                          <td><a href="<?= base_url('admin/jadwal_edit/'.$u->id_jadwal) ?>"><span class="badge rounded-pill text-bg-primary">Edit</span></a> 
+                          <a href="<?= base_url('admin/jadwal_hapus/'.$u->id_jadwal) ?>"  onclick="return confirm('Yakin?')"><span class="badge rounded-pill text-bg-danger">Hapus</span></a></td>
+                        </tr>
+                        <?php endforeach ?>
+                      </tbody>
+                    </table>
                   </div>
-                  <svg
-                    class="small-box-icon"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"
-                    ></path>
-                  </svg>
                 </div>
-                <!--end::Small Box Widget 1-->
               </div>
-              <!--end::Col-->
-              <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 2-->
-                <div class="small-box text-bg-success">
-                  <div class="inner">
-                    <h3><?= $service_acc ?></h3>
-                    <p>Total Service ACC</p>
-                  </div>
-                  <svg
-                    class="small-box-icon"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z"
-                    ></path>
-                  </svg>
-                </div>
-                <!--end::Small Box Widget 2-->
-              </div>
-              <!--end::Col-->
-              <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 3-->
-                <div class="small-box text-bg-warning">
-                  <div class="inner">
-                    <h3><?= $hari_ini ?></h3>
-                    <p>Booking Service Hari Ini</p>
-                  </div>
-                  <svg
-                    class="small-box-icon"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <path
-                      d="M6.25 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM3.25 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM19.75 7.5a.75.75 0 00-1.5 0v2.25H16a.75.75 0 000 1.5h2.25v2.25a.75.75 0 001.5 0v-2.25H22a.75.75 0 000-1.5h-2.25V7.5z"
-                    ></path>
-                  </svg>
-                </div>
-                <!--end::Small Box Widget 3-->
-              </div>
-              <!--end::Col-->
-              <div class="col-lg-3 col-6">
-                <!--begin::Small Box Widget 4-->
-                <div class="small-box text-bg-danger">
-                  <div class="inner">
-                    <h3><?= $service_tolak ?></h3>
-                    <p>Total Service Ditolak</p>
-                  </div>
-                  <svg
-                    class="small-box-icon"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                    aria-hidden="true"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      fill-rule="evenodd"
-                      d="M2.25 13.5a8.25 8.25 0 018.25-8.25.75.75 0 01.75.75v6.75H18a.75.75 0 01.75.75 8.25 8.25 0 01-16.5 0z"
-                    ></path>
-                    <path
-                      clip-rule="evenodd"
-                      fill-rule="evenodd"
-                      d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z"
-                    ></path>
-                  </svg>
-                </div>
-                <!--end::Small Box Widget 4-->
-              </div>
-              <!--end::Col-->
+              <!-- /.col -->
             </div>
             <!--end::Row-->
-            <!--begin::Row-->
-            <!-- /.row (main row) -->
           </div>
           <!--end::Container-->
         </div>
@@ -273,31 +209,6 @@
       });
     </script>
     <!--end::OverlayScrollbars Configure-->
-    <!-- OPTIONAL SCRIPTS -->
-    <!-- sortablejs -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"
-      crossorigin="anonymous"
-    ></script>
-    <!-- sortablejs -->
-    <script>
-      new Sortable(document.querySelector('.connectedSortable'), {
-        group: 'shared',
-        handle: '.card-header',
-      });
-
-      const cardHeaders = document.querySelectorAll('.connectedSortable .card-header');
-      cardHeaders.forEach((cardHeader) => {
-        cardHeader.style.cursor = 'move';
-      });
-    </script>
-    <!-- apexcharts -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
-      integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
-      crossorigin="anonymous"
-    ></script>
-    <!-- ChartJS -->
     <!--end::Script-->
   </body>
   <!--end::Body-->

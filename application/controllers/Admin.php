@@ -116,7 +116,7 @@ class Admin extends CI_Controller {
     {
       // kalau GET → tampilkan form
       if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-      $this->load->view('admin/register');
+      $this->load->view('superadmin/register');
       return;
       }
       $email = $this->input->post('email', true);
@@ -138,7 +138,7 @@ class Admin extends CI_Controller {
 
       $this->user_model->register($data);
 
-      redirect('admin/login');
+      redirect('admin/user_table');
     }
     public function login_admin()
     {
@@ -213,6 +213,74 @@ class Admin extends CI_Controller {
       redirect('admin/login');
         }
     $this->user_model->delete($id);
-    redirect('admin/superadmin');
+    redirect('admin/user_table');
+  }
+  public function jadwal_karyawan(){
+    if (!$this->session->userdata('login') || 
+      $this->session->userdata('role') != 'Superadmin') {
+      redirect('admin/login');
+        }
+      $data['jadwal'] = $this->user_model->getJadwal();
+      $this->load->view("superadmin/jadwal.php",$data);
+  }
+  
+  public function tambah_jadwal(){
+      if (!$this->session->userdata('login') || 
+      $this->session->userdata('role') != 'Superadmin') {
+      redirect('admin/login');
+        }
+      $data['user'] = $this->user_model->getAll();
+      $this->load->view("superadmin/tambah_jadwal.php", $data);
+    }
+
+  public function add_jadwal()
+    {
+      // kalau GET → tampilkan form
+      if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+      $this->load->view('superadmin/tambah_jadwal');
+      return;
+      }
+      $data = [
+        'id_karyawan'     => $this->input->post('id_karyawan', true),
+        'jam'   => $this->input->post('jam', true),
+        'tanggal'     => $this->input->post('tanggal')
+      ];
+
+      $this->user_model->tambah_jadwal($data);
+
+      redirect('admin/jadwal_karyawan');
+    }
+    public function jadwal_edit($id){
+      if (!$this->session->userdata('login') || 
+      $this->session->userdata('role') != 'Superadmin') {
+      redirect('admin/login');
+      }
+      $user = $this->user_model->getIdJadwal($id);
+      if (!$user) {
+      show_error('Data jadwal tidak ditemukan');
+      }
+      $data['jadwal'] = $user;
+      $this->load->view("superadmin/edit_jadwal", $data);
+    }
+    public function update_jadwal()
+  {
+    $id = $this->input->post('id');
+
+    $data = [
+      'jam' => $this->input->post('jam'),
+      'tanggal'    => $this->input->post('tanggal')
+    ];
+
+    $this->user_model->update_jadwal($id, $data);
+    redirect('admin/jadwal_karyawan');
+  }
+  public function jadwal_hapus($id)
+  {
+    if (!$this->session->userdata('login') || 
+      $this->session->userdata('role') != 'Superadmin') {
+      redirect('admin/login');
+        }
+    $this->user_model->delete_jadwal($id);
+    redirect('admin/jadwal_karyawan');
   }
 }

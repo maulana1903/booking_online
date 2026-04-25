@@ -84,6 +84,12 @@
                   <p>User</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?= base_url('admin/')?>jadwal_karyawan" class="nav-link">
+                  <i class="nav-icon bi bi-clipboard-fill"></i>
+                  <p>Jadwal Karyawan</p>
+                </a>
+              </li>
             </ul>
           </nav>
         </div>
