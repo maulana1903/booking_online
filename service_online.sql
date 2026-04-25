@@ -11,7 +11,7 @@
  Target Server Version : 100432 (10.4.32-MariaDB)
  File Encoding         : 65001
 
- Date: 25/04/2026 10:48:11
+ Date: 25/04/2026 10:59:51
 */
 
 SET NAMES utf8mb4;
@@ -84,7 +84,7 @@ CREATE TABLE `users`  (
 -- ----------------------------
 INSERT INTO `users` VALUES (4, 'fatwa@mail.com', '$2y$10$VTVf9hYm6zYJHExCH7dRYOAy27dftwNwtWNdya9w06V8HvmcZ0cVG', 'Fatwa Kudoikom', 'Admin', 'IT-Manager');
 INSERT INTO `users` VALUES (5, 'admin@mail.com', '$2y$10$RN8cgrUx8bNUJB123BPLxO4qPD1ro/mMayXElfBf4u2djyg1WP27W', 'adminku', 'Admin', 'admin');
-INSERT INTO `users` VALUES (6, 'fatwaimam.fim@gmail.com', '$2y$10$O8QmYDeDzbqTmC.lLZEzBOyRB8i6S2FRfcVcIdb.KKxz.BOiEOS9O', 'Fatwa Imam Maulana', 'Superadmin', 'Kepala IT');
+INSERT INTO `users` VALUES (6, 'fatwaganteng@mail.com', '$2y$10$XTRdEN3rft3eSxwRDL9eUewtDzDpsdeF4tcgqnsgtUI6Sq41l5T.y', 'Fatwa Imam Maulana', 'Admin', 'Kepala IT');
 INSERT INTO `users` VALUES (7, 'uji@mail.com', '$2y$10$hvT/LHwkrs1UZH/wSz9FMu7dG5gbf2NJpTalc3.OkiXRt.tlnu4/i', 'Ujicob', 'Admin', 'IT Support');
 
 SET FOREIGN_KEY_CHECKS = 1;
